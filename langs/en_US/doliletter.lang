@@ -84,4 +84,6 @@ SpreadRiskSeeAllPhotos = Scroll through every photo to validate
 SpreadRisksPending = Take note of every risk before signing. Risks left:
 ErrorRisksNotAcknowledged = Risks you have not taken note of: %s
 SpreadRiskStep = Step %s / %s
-SpreadRecapTitle = Summary of the identified risks and the required protections
+SpreadRecapTitle = Summary
+SpreadRecapRisks = Identified risks
+SpreadRecapProtections = Required protections

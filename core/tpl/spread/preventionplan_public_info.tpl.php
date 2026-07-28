@@ -51,7 +51,8 @@
 /* Recapitulatif de fin de page : uniquement des pictogrammes, tous les risques a la suite puis
    tous les moyens de prevention. Les noms restent en infobulle et en texte alternatif. */
 .pp-recap__line { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; }
-.pp-recap__line--protections { margin-top: 12px; padding-top: 12px; border-top: 1px solid #eee; }
+/* Le filet separe les deux parties : il appartient au libelle, qui ouvre la seconde */
+.pp-recap__label--protections { margin-top: 14px; padding-top: 12px; border-top: 1px solid #eee; }
 .pp-recap__line img { object-fit: contain; flex: 0 0 auto; }
 .pp-recap__line--risks img { width: 46px; height: 46px; }
 .pp-recap__line--protections img { width: 44px; height: 44px; }
@@ -206,6 +207,7 @@
     if (!empty($ppRisks)) { ?>
     <div class="pp-public-block">
         <div class="pp-public-block__title"><i class="fas fa-clipboard-list"></i> <?php echo $langs->trans('SpreadRecapTitle'); ?></div>
+        <div class="pp-risk-block__label"><i class="fas fa-exclamation-triangle"></i> <?php echo $langs->trans('SpreadRecapRisks'); ?></div>
         <div class="pp-recap__line pp-recap__line--risks">
             <?php foreach ($ppRisks as $ppRecapRisk) {
                 if (empty($ppRecapRisk['thumb'])) {
@@ -218,6 +220,7 @@
         </div>
 
         <?php if (!empty($ppRecapProtections)) { ?>
+        <div class="pp-risk-block__label pp-recap__label--protections"><i class="fas fa-hard-hat"></i> <?php echo $langs->trans('SpreadRecapProtections'); ?></div>
         <div class="pp-recap__line pp-recap__line--protections">
             <?php foreach ($ppRecapProtections as $ppRecapProtection) { ?>
             <img src="<?php echo $ppRecapProtection['thumb']; ?>" title="<?php echo dol_escape_htmltag($ppRecapProtection['name']); ?>" alt="<?php echo dol_escape_htmltag($ppRecapProtection['name']); ?>">
