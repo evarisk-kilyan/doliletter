@@ -26,8 +26,8 @@
  */
 ?>
 <style>
-.pp-public-block { background: #fff; border: 1px solid #e5e5e5; border-radius: 8px; padding: 12px; margin: 10px 0; }
-.pp-public-block__title { display: flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 600; color: #333; margin-bottom: 10px; padding-bottom: 6px; border-bottom: 1px solid #eee; }
+.pp-public-block { background: #fff; border: 1px solid #e5e5e5; border-radius: 8px; padding: 16px; margin: 16px 0; }
+.pp-public-block__title { display: flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 600; color: #333; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid #eee; }
 .pp-public-block__title i { color: #3b82f6; }
 .pp-public-grid { display: flex; flex-wrap: wrap; gap: 12px; }
 .pp-public-item { display: flex; align-items: center; gap: 10px; min-width: 220px; padding: 8px 10px; border: 1px solid #e5e5e5; border-radius: 8px; }
@@ -35,22 +35,19 @@
 .pp-public-item__name { font-size: 13px; font-weight: 600; color: #333; }
 .pp-public-item__comment { font-size: 12px; color: #666; }
 .pp-public-badge { display: inline-block; margin-top: 4px; padding: 2px 8px; font-size: 11px; font-weight: 600; color: #fff; background: #ef4444; border-radius: 10px; }
-.pp-risk-block { background: #fff; border: 1px solid #e5e5e5; border-radius: 8px; padding: 12px; margin: 10px 0; }
-.pp-risk-block__header { display: flex; align-items: center; gap: 10px; }
-.pp-risk-block__picto { width: 48px; height: 48px; object-fit: contain; flex: 0 0 auto; }
+.pp-risk-block { background: #fff; border: 1px solid #e5e5e5; border-radius: 8px; padding: 14px; margin: 12px 0; }
+.pp-risk-block__header { display: flex; align-items: center; gap: 12px; }
+.pp-risk-block__picto { width: 56px; height: 56px; object-fit: contain; flex: 0 0 auto; }
 .pp-risk-block__name { font-size: 15px; font-weight: 600; color: #333; }
 /* Reste en haut a droite du bloc, quelle que soit la hauteur du nom et de la description */
 .pp-risk-block__step { flex: 0 0 auto; align-self: flex-start; margin-left: auto; padding: 3px 10px; font-size: 12px; font-weight: 600; white-space: nowrap; color: #1d4ed8; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 12px; }
 .pp-risk-block__comment { margin-top: 4px; font-size: 13px; color: #666; white-space: pre-line; }
-.pp-risk-block__section { margin-top: 10px; padding-top: 10px; border-top: 1px solid #eee; }
-.pp-risk-block__label { display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; color: #666; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+.pp-risk-block__section { margin-top: 12px; padding-top: 12px; border-top: 1px solid #eee; }
+.pp-risk-block__label { display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; color: #666; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
 .pp-risk-block__label i { color: #3b82f6; }
-/* Les pictos tiennent sur la ligne du libelle : deux fois moins de hauteur perdue par risque */
-.pp-risk-block__section--inline { display: flex; align-items: center; gap: 14px; }
-.pp-risk-block__section--inline .pp-risk-block__label { flex: 0 0 auto; margin-bottom: 0; }
-.pp-risk-protections { display: flex; flex-wrap: wrap; gap: 8px; }
-.pp-risk-protection { display: flex; align-items: center; justify-content: center; width: 46px; }
-.pp-risk-protection img { width: 44px; height: 44px; object-fit: contain; }
+.pp-risk-protections { display: flex; flex-wrap: wrap; gap: 10px; }
+.pp-risk-protection { display: flex; align-items: center; justify-content: center; width: 56px; }
+.pp-risk-protection img { width: 52px; height: 52px; object-fit: contain; }
 /* Recapitulatif de fin de page : uniquement des pictogrammes, tous les risques a la suite puis
    tous les moyens de prevention. Les noms restent en infobulle et en texte alternatif. */
 .pp-recap__line { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; }
@@ -63,7 +60,7 @@
 .pp-carousel__track::-webkit-scrollbar { display: none; }
 .pp-carousel__slide { flex: 0 0 100%; scroll-snap-align: center; }
 /* contain, pas cover : une photo de terrain doit se lire en entier, quitte a laisser des bandes */
-.pp-carousel__slide img { display: block; width: 100%; height: 200px; object-fit: contain; border-radius: 6px; background: #f3f4f6; }
+.pp-carousel__slide img { display: block; width: 100%; height: 260px; object-fit: contain; border-radius: 6px; background: #f3f4f6; }
 .pp-carousel__nav { position: absolute; top: 50%; transform: translateY(-50%); display: flex; align-items: center; justify-content: center; width: 34px; height: 34px; padding: 0; font-size: 15px; color: #fff; background: rgba(17, 24, 39, 0.55); border: none; border-radius: 50%; cursor: pointer; transition: opacity .2s; }
 .pp-carousel__nav:hover { background: rgba(17, 24, 39, 0.75); }
 .pp-carousel__nav--prev { left: 8px; }
@@ -78,11 +75,11 @@
 @media (prefers-reduced-motion: reduce) { .pp-carousel__nav--pulse { animation: none; } }
 .pp-carousel__counter { position: absolute; top: 8px; right: 8px; padding: 3px 9px; font-size: 12px; font-weight: 600; color: #fff; background: rgba(17, 24, 39, 0.65); border-radius: 12px; pointer-events: none; }
 .pp-carousel--single .pp-carousel__counter { display: none; }
-.pp-carousel__dots { display: flex; justify-content: center; gap: 6px; margin-top: 6px; }
+.pp-carousel__dots { display: flex; justify-content: center; gap: 6px; margin-top: 8px; }
 .pp-carousel__dot { width: 7px; height: 7px; padding: 0; border: none; border-radius: 50%; background: #d1d5db; cursor: pointer; }
 .pp-carousel__dot--active { background: #3b82f6; }
 .pp-carousel--single .pp-carousel__nav, .pp-carousel--single .pp-carousel__dots { display: none; }
-.pp-risk-ack { display: flex; align-items: center; flex-wrap: wrap; gap: 2px 10px; margin-top: 10px; padding-top: 10px; border-top: 1px solid #eee; }
+.pp-risk-ack { display: flex; align-items: center; flex-wrap: wrap; gap: 2px 10px; margin-top: 12px; padding-top: 12px; border-top: 1px solid #eee; }
 .pp-risk-ack__text { flex: 1; min-width: 180px; font-size: 13px; color: #4b5563; }
 .pp-risk-ack__input { width: 20px; height: 20px; margin: 0; flex: 0 0 auto; cursor: pointer; accent-color: #3b82f6; }
 .pp-risk-ack__input:disabled { cursor: default; }
@@ -144,7 +141,7 @@
         </div>
 
         <?php if (!empty($ppRiskItem['protections'])) { ?>
-        <div class="pp-risk-block__section pp-risk-block__section--inline">
+        <div class="pp-risk-block__section">
             <div class="pp-risk-block__label"><i class="fas fa-hard-hat"></i> <?php echo $langs->trans('MobilePPProtections'); ?></div>
             <div class="pp-risk-protections">
                 <?php foreach ($ppRiskItem['protections'] as $ppRiskProtection) { ?>
