@@ -267,4 +267,4 @@ SpreadRiskSeeAllPhotos                = Faites défiler toutes les photos pour v
 SpreadRisksPending                    = Prenez connaissance de tous les risques avant de signer. Risques restants :
 ErrorRisksNotAcknowledged             = Risques dont vous n'avez pas pris connaissance : %s
 SpreadRiskStep                        = Étape %s / %s
-SpreadRecapTitle                      = Récapitulatif
+SpreadRecapTitle                      = Récapitulatif des risques identifiés et protections nécessaires
