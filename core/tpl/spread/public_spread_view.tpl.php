@@ -56,6 +56,19 @@ body {
     overflow-x: hidden;
 }
 
+/* Apercu du document : hauteur en CSS et non en attribut, pour la reduire sur telephone ou
+   600px de cadre repoussaient tout le reste de la page hors de l'ecran */
+.public-card__preview {
+    display: block;
+    width: 100%;
+    height: 460px;
+    margin-bottom: 12px;
+}
+
+@media (max-width: 600px) {
+    .public-card__preview { height: 300px; }
+}
+
 .public-card__header {
     background: transparent;
     margin-bottom: 16px;
@@ -617,15 +630,14 @@ body {
                         $filePreviewUrl = DOL_URL_ROOT . '/document.php?hashp=' . urlencode($file->share) . '&attachment=0';
                     ?>
                     <object
+                        class="public-card__preview"
                         name="objectpreview"
                         type="<?php echo dol_mimetype($file->filename); ?>"
-                        width="100%"
-                        height="600px"
                         data="<?php echo $filePreviewUrl; ?>">
                         <a href="<?php echo $filePreviewUrl; ?>" target="_blank"><?php echo dol_escape_htmltag($file->filename); ?></a>
                     </object>
                     <?php } else { ?>
-                        <video src="<?php echo DOL_URL_ROOT . '/document.php?hashp=' . urlencode($file->share); ?>" controls width="100%" height="600px">
+                        <video class="public-card__preview" src="<?php echo DOL_URL_ROOT . '/document.php?hashp=' . urlencode($file->share); ?>" controls>
                             Your browser does not support the video tag.
                         </video>
                     <?php } ?>
