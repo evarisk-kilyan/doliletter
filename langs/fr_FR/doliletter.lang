@@ -251,6 +251,10 @@ SpreadPublicRegisterSubmit        = Valider mon inscription
 SpreadPublicRegisterMissingFields = Renseignez vos nom, prénom, email et téléphone
 SpreadExternalSignatory           = Inscrit depuis le lien public
 
+ErrorSpreadRegisterFailed              = Votre inscription n'a pas pu être enregistrée : %s
+ErrorSpreadNoAuthorForAttendanceSheet  = la diffusion n'a pas d'auteur, signalez-le à l'entreprise qui vous a transmis le lien
+ErrorSpreadUnknown                     = raison inconnue, consultez le journal Dolibarr
+
 # Mandatory documents
 SpreadNotConcerned                    = Non concerné
 SpreadIAmNotConcerned                 = Je ne suis pas concerné

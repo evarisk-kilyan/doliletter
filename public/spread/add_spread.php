@@ -299,7 +299,8 @@ if ($action == 'register_public_signatory') {
 
     $result = doliletter_spread_ensure_attendance_sheet($attendanceSheet, $objectsMetadata, $objectType, $id, $user);
     if ($result < 0) {
-        echo '<input type="hidden" id="error" value="' . $langs->transnoentities('Error') . '">';
+        // A bare "Error" leaves both the visitor and the support with nothing to go on
+        echo '<input type="hidden" id="error" value="' . dol_escape_htmltag($langs->transnoentities('ErrorSpreadRegisterFailed', doliletter_spread_get_object_error($attendanceSheet, $langs))) . '">';
         exit;
     }
 
@@ -325,7 +326,7 @@ if ($action == 'register_public_signatory') {
 
         $result = $tmpSignatory->create($user);
         if ($result < 0) {
-            echo '<input type="hidden" id="error" value="' . $langs->transnoentities('Error') . '">';
+            echo '<input type="hidden" id="error" value="' . dol_escape_htmltag($langs->transnoentities('ErrorSpreadRegisterFailed', doliletter_spread_get_object_error($tmpSignatory, $langs))) . '">';
             exit;
         }
 

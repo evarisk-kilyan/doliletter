@@ -1308,7 +1308,9 @@ function registerPublicSignatory() {
         return;
     }
 
-    if (!fields.email || !fields.email.includes('@')) {
+    // A single "@" is not a check: the server refuses what it rejects, and the visitor only found
+    // out after a round trip with an error naming their own address
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(fields.email || '')) {
         $.jnotify('<?php echo dol_escape_js($langs->transnoentities('PleaseEnterValidEmail')); ?>', {type: 'error'});
         return;
     }

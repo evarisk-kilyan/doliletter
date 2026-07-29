@@ -66,6 +66,10 @@ SpreadPublicRegisterSubmit = Confirm my registration
 SpreadPublicRegisterMissingFields = Please fill in your lastname, firstname, email and phone
 SpreadExternalSignatory = Registered from the public link
 
+ErrorSpreadRegisterFailed = Your registration could not be saved: %s
+ErrorSpreadNoAuthorForAttendanceSheet = the spread has no author, please report it to the company that sent you the link
+ErrorSpreadUnknown = unknown reason, see the Dolibarr log
+
 #
 # Mandatory documents
 #

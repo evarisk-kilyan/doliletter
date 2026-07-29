@@ -51,14 +51,58 @@ function doliletter_spread_ensure_attendance_sheet(DoliletterAttendanceSheet $at
 
     $objectsMetadata[$objectType]['object']->fetch($objectId);
 
+    // A visitor registering from the public page has no session, so $user->id is empty and
+    // createCommon() would write null into fk_user_creat, which the column refuses. The sheet is
+    // then attributed to the owner of the diffused object, the one who asked for the spread.
+    $sheetAuthorId = ($user->id > 0) ? (int) $user->id : (int) $objectsMetadata[$objectType]['object']->fk_user_creat;
+
     $attendanceSheet->ref           = $objectsMetadata[$objectType]['object']->ref;
     $attendanceSheet->status        = $attendanceSheet::STATUS_VALIDATED;
     $attendanceSheet->fk_object     = $objectId;
     $attendanceSheet->object_type   = $objectType;
     $attendanceSheet->entity        = $conf->entity;
-    $attendanceSheet->fk_user_creat = $user->id;
+    $attendanceSheet->fk_user_creat = $sheetAuthorId;
+
+    // createCommon() overwrites fk_user_creat with $user->id whenever it is not > 0: an object
+    // with no owner would bring back the very null the column rejects
+    if ($sheetAuthorId <= 0) {
+        $attendanceSheet->error = 'ErrorSpreadNoAuthorForAttendanceSheet';
+
+        return -1;
+    }
 
     return $attendanceSheet->create($user);
+}
+
+/**
+ * Readable reason why an object refused to be saved.
+ *
+ * The public registration used to answer a bare "Error": the caller could neither tell the visitor
+ * what to correct nor report anything useful. Dolibarr puts the database message in ->errors and
+ * the business one in ->error, either of which may be a translation key.
+ *
+ * @param  CommonObject $object Object that failed
+ * @param  Translate    $langs  Translation handler
+ * @return string               Reason, or a generic label when the object said nothing
+ */
+function doliletter_spread_get_object_error(CommonObject $object, Translate $langs): string
+{
+    $reasons = [];
+
+    if (dol_strlen($object->error)) {
+        $reasons[] = $langs->transnoentities($object->error);
+    }
+    foreach ((array) $object->errors as $objectError) {
+        if (dol_strlen($objectError)) {
+            $reasons[] = $langs->transnoentities($objectError);
+        }
+    }
+
+    $reasons = array_unique($reasons);
+
+    dol_syslog('doliletter_spread: ' . get_class($object) . ' KO - ' . implode(' | ', $reasons), LOG_ERR);
+
+    return !empty($reasons) ? implode(' - ', $reasons) : $langs->transnoentities('ErrorSpreadUnknown');
 }
 
 /**
