@@ -348,7 +348,7 @@ window.eoxiaJS.signature.createSignature = function() {
 		var signature = $(this).closest( '.wpeo-modal' ).find( 'canvas' )[0].toDataURL();
 	}
 
-	var url = document.URL + '&action=addSignature' + signatoryIDPost + '&role=' + role;
+	var url = document.URL + '&action=addSignature' + signatoryIDPost + '&role=' + role + '&token=' + ($('input[name="token"]').val() || '');
 	var type = "POST"
 
 	$.ajax({
@@ -385,7 +385,7 @@ window.eoxiaJS.signature.download = function( event ) {
 
 window.eoxiaJS.signature.autoDownloadSpecimen = function( event ) {
     let element = $(this).closest('.file-generation')
-	let url = document.URL + '&action=builddoc'
+	let url = document.URL + '&action=builddoc&token=' + ($('input[name="token"]').val() || '')
     $.ajax({
         url: url,
         type: "POST",
@@ -395,7 +395,7 @@ window.eoxiaJS.signature.autoDownloadSpecimen = function( event ) {
 
             window.eoxiaJS.signature.download(path + filename, filename);
             $.ajax({
-                url: document.URL + '&action=remove_file',
+                url: document.URL + '&action=remove_file&token=' + ($('input[name="token"]').val() || ''),
                 type: "POST",
                 success: function ( ) {
                 },
